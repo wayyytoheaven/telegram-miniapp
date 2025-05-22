@@ -2,147 +2,77 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIVEKA ASTRO GPT</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
-        <div id="welcome-screen" class="screen active">
-            <div class="welcome-content">
-                <img src="png/Welcome_logo.png" alt="Логотип VIVEKA ASTRO GPT" class="welcome-logo">
-                <p class="welcome-text-main">Добро пожаловать в</p>
-                <p class="welcome-text-sub">VIVEKA ASTRO GPT!</p>
-                <button class="start-button" id="start-onboarding-button">Далее</button>
+        <div class="screen" id="screen1">
+            <header class="header">
+                <span class="close-btn">&times;</span>
+                <span class="title">VIVEKA ASTRO GPT</span>
+                <span class="menu-btn">&#8226;&#8226;&#8226;</span>
+            </header>
+            <div class="content welcome-screen">
+                <img src="png/Welcome_logo.png" alt="Иконка приложения" class="app-icon">
+                <p class="welcome-text">Добро пожаловать в<br>VIVEKA ASTRO GPT!</p>
             </div>
+            <div class="bottom-bar"></div>
         </div>
 
-        <div id="onboarding-slides" class="screen">
-            <div class="app-header">
-                <button class="close-button" onclick="window.Telegram.WebApp.close()">
-                    &times;
-                </button>
-                <h1 class="app-title">VIVEKA ASTRO GPT</h1>
-            </div>
-
-            <div id="slide-1" class="slide active">
-                <div class="slide-content">
-                    <h2 class="slide-main-text">Откройте для себя мир действии-астрологии с VIVEKA ASTRO GPT</h2>
-                    <p class="slide-description">Первая специализированная нейросеть, созданная для того, чтобы помочь вам разобраться в сложностях жизни и найти ответы на важные вопросы.</p>
+        <div class="screen hidden" id="screen2">
+            <header class="header">
+                <span class="close-btn">&times;</span>
+                <span class="title">VIVEKA ASTRO GPT</span>
+                <span class="menu-btn">&#8226;&#8226;&#8226;</span>
+            </header>
+            <div class="content onboarding-screen">
+                <h1 class="onboarding-title">Откройте для себя мир джйотиш-астрологии с VIVEKA ASTRO GPT</h1>
+                <div class="card">
+                    <img src="png/Logo.png" alt="Иконка приложения" class="app-icon card-icon">
+                    <p class="card-text">Первая специализированная нейросеть, созданная для того, чтобы помочь вам разобраться в сложностях жизни и найти ответы на важные вопросы.</p>
+                </div>
+                <div class="pagination">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
                 </div>
             </div>
-
-            <div id="slide-2" class="slide">
-                <div class="slide-content">
-                    <h2 class="slide-main-text">С помощью нашего приложения вы сможете:</h2>
-                    <img src="png/Sun.png" alt="Иконка Солнца" class="slide-icon">
-                    <p class="slide-description">Получить глубокое понимание себя</p>
-                    <p class="slide-sub-description">Узнайте о своих сильных и слабых сторонах, а также о том, как астрология может помочь вам раскрыть ваш потенциал.</p>
-                </div>
+            <div class="footer">
+                <button class="button">Далее</button>
             </div>
-
-            <div id="slide-3" class="slide">
-                <div class="slide-content">
-                    <h2 class="slide-main-text">С помощью нашего приложения вы сможете:</h2>
-                    <img src="png/Feather.png" alt="Иконка Календаря" class="slide-icon">
-                    <p class="slide-description">Подобрать благоприятные даты</p>
-                    <p class="slide-sub-description">Понимание астрологических циклов поможет вам выбирать оптимальные моменты для начала новых проектов, важных встреч или личных изменений.</p>
-                </div>
-            </div>
-
-            <div id="slide-4" class="slide">
-                <div class="slide-content">
-                    <h2 class="slide-main-text">С помощью нашего приложения вы сможете:</h2>
-                    <img src="png/Moon.png" alt="Иконка Совместимости" class="slide-icon">
-                    <p class="slide-description">Проверить совместимость</p>
-                    <p class="slide-sub-description">Исследуйте свои отношения с друзьями, партнёрами и коллегами. Узнайте, как ваши и чужие энергии (карты рождения) могут гармонично или дисгармонично влиять друг на друга.</p>
-                </div>
-            </div>
-
-            <div id="slide-5" class="slide">
-                <div class="slide-content">
-                    <h2 class="slide-main-text">С помощью нашего приложения вы сможете:</h2>
-                    <img src="png/Star.png" alt="Иконка Глаза" class="slide-icon">
-                    <p class="slide-description">Задать вопросы эксперту</p>
-                    <p class="slide-sub-description">Воспользуйтесь возможностью задать свои вопросы и получить профессиональные рекомендации от нашей нейросети, которая использует передовые технологии для анализа астрологических данных.</p>
-                </div>
-            </div>
-
-            <div class="slide-indicators">
-                <span class="dot active" data-slide="0"></span>
-                <span class="dot" data-slide="1"></span>
-                <span class="dot" data-slide="2"></span>
-                <span class="dot" data-slide="3"></span>
-                <span class="dot" data-slide="4"></span>
-            </div>
-
-            <button class="next-button" id="next-slide-button">Далее</button>
+            <div class="bottom-bar"></div>
         </div>
     </div>
 
     <script>
-        window.Telegram.WebApp.ready();
+        // Простой JavaScript для переключения между экранами для демонстрации
+        document.addEventListener('DOMContentLoaded', () => {
+            const screen1 = document.getElementById('screen1');
+            const screen2 = document.getElementById('screen2');
+            const nextButton = document.querySelector('#screen2 .button');
 
-        const welcomeScreen = document.getElementById('welcome-screen');
-        const onboardingSlidesScreen = document.getElementById('onboarding-slides');
-        const startOnboardingButton = document.getElementById('start-onboarding-button');
-        const nextSlideButton = document.getElementById('next-slide-button');
+            // Изначально показываем Экран 1
+            screen1.classList.remove('hidden');
+            screen2.classList.add('hidden');
 
-        const slides = onboardingSlidesScreen.querySelectorAll('.slide');
-        const dots = onboardingSlidesScreen.querySelectorAll('.dot');
-        let currentSlideIndex = 0;
-        let autoSlideInterval;
-        const slideDuration = 4000; // 4 секунды
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-            document.getElementById(screenId).classList.add('active');
-        }
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                dots[i].classList.remove('active');
+            // Пример: клик по Экрану 1 переводит на Экран 2
+            screen1.addEventListener('click', () => {
+                screen1.classList.add('hidden');
+                screen2.classList.remove('hidden');
             });
 
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlideIndex = index;
-        }
-        function nextSlide() {
-            clearInterval(autoSlideInterval);
-            currentSlideIndex++;
-            if (currentSlideIndex >= slides.length) {
-                alert('Онбординг завершен! Здесь можно перейти к основному приложению.');
-                currentSlideIndex = 0;
+            // Пример: клик по кнопке "Далее" показывает уведомление (или выполняет дальнейшую навигацию)
+            if (nextButton) {
+                nextButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Предотвращаем всплытие клика до screen1, если он был виден
+                    alert('Кнопка "Далее" нажата!');
+                    // В реальном приложении вы бы перешли на следующий экран или выполнили действие
+                });
             }
-            showSlide(currentSlideIndex);
-            startAutoSlide(); 
-        }
-        function startAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(() => {
-                if (currentSlideIndex < slides.length - 1) {
-                    nextSlide();
-                } else {
-                    nextSlide();
-                }
-            }, slideDuration);
-        }
-        startOnboardingButton.addEventListener('click', () => {
-            showScreen('onboarding-slides');
-            showSlide(0);
-            startAutoSlide();
         });
-        nextSlideButton.addEventListener('click', nextSlide);
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-                startAutoSlide();
-            });
-        });
-        showScreen('welcome-screen');
-</script>
+    </script>
 </body>
 </html>
