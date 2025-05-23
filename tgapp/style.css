@@ -1,222 +1,263 @@
+/* ОБЩИЕ СТИЛИ */
 body {
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0; /* Светло-серый фон */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    overflow: hidden; /* Предотвращаем прокрутку, если содержимое переполняет в этой демонстрации */
+    background-color: #E6D9F2; /* Светло-фиолетовый фон */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #5D3E7B; /* Темно-фиолетовый цвет текста */
+    overflow: hidden; /* Скрываем прокрутку, если контент выходит за пределы */
+    position: relative; /* Для позиционирования элементов поверх друг друга */
 }
 
-.app-container {
-    width: 375px; /* На основе размеров изображения (iPhone 13 mini) */
-    height: 707px; /* На основе размеров изображения (iPhone 13 mini) */
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #fff; /* Белый фон для рамки приложения */
+/* Класс для скрытия элементов */
+.hidden {
+    display: none !important; /* Важно, чтобы перебивать flex/block */
 }
 
-.screen {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+/* СТИЛИ ЗАГРУЗОЧНОГО ЭКРАНА */
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Размещаем поверх всего */
     top: 0;
     left: 0;
-    background-color: #EDE7F6; /* Светло-фиолетовый фон для экранов */
+    width: 100%;
+    height: 100%;
+    background-color: #E6D9F2;
+    z-index: 1000; /* Гарантируем, что он будет поверх других элементов */
+    transition: opacity 0.5s ease-out; /* Плавное исчезновение */
+}
+
+.splash-screen.fade-out {
+    opacity: 0;
+    pointer-events: none; /* Отключаем взаимодействие после исчезновения */
+}
+
+.splash-screen .logo {
+    width: 150px; /* Размер логотипа */
+    height: 150px;
+    background-color: #8C5EAF; /* Более темный фиолетовый для круга логотипа */
+    border-radius: 50%; /* Делает элемент круглым */
     display: flex;
-    flex-direction: column;
-    color: #4A148C; /* Темно-фиолетовый цвет текста */
-}
-
-.hidden {
-    display: none;
-}
-
-/* Стили заголовка (общие для обоих экранов) */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    padding-top: 50px; /* Корректировка для области выреза/строки состояния */
-    font-size: 16px;
-    font-weight: 500;
-    color: #6A1B9A; /* Цвет текста заголовка */
-    background-color: #EDE7F6; /* Соответствует фону экрана */
-}
-
-.header .close-btn {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.header .menu-btn {
-    font-size: 24px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.header .title {
-    flex-grow: 1;
-    text-align: center;
-    font-weight: bold;
-    color: #4A148C;
-}
-
-/* Область контента для обоих экранов */
-.content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px; /* Отступ снизу от логотипа */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень для объема */
+}
+
+.splash-screen .logo img {
+    width: 80%; /* Размер PNG-изображения внутри круга */
+    height: 80%;
+    object-fit: contain; /* Сохраняет пропорции */
+    /* Если у вашей PNG иконки не белый цвет, и вы хотите сделать её белой: */
+    /* filter: brightness(0) invert(1); */
+}
+
+.splash-screen .welcome-text {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.splash-screen .app-name {
+    font-size: 36px;
+    font-weight: bold;
+    color: #5D3E7B; /* Основной цвет приложения */
+}
+
+/* СТИЛИ СЛАЙДШОУ (БОЛЬШАЯ ЧАСТЬ БЕЗ ИЗМЕНЕНИЙ ОТ ПРЕДЫДУЩЕГО ОТВЕТА) */
+.slider-container {
+    width: 100%;
+    max-width: 400px; /* Ограничиваем ширину для мобильных устройств, как на макете */
+    height: 100vh; /* Занимает всю высоту */
+    background-color: #E6D9F2; /* Для фона внутри контейнера */
+    display: flex; /* Изначально может быть hidden, но flex для внутренней структуры */
+    flex-direction: column;
+    justify-content: space-between; /* Распределяем пространство между элементами */
     padding: 20px;
-    text-align: center;
+    box-sizing: border-box; /* Учитываем padding в общей ширине/высоте */
 }
 
-/* Иконка (общий стиль, но с вариациями) */
-.app-icon {
-    width: 100px; /* Настройте размер по необходимости */
-    height: 100px;
-    background-color: #9C27B0; /* Средне-фиолетовый для фона иконки */
-    border-radius: 50%;
+.slide-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    /* Заглушка для графики иконки */
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    overflow: hidden; /* Скрыть переполнение, если вы размещаете фактическое изображение */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease-in-out; /* Анимация переключения слайдов */
+    width: 500%; /* 100% * количество слайдов (5) */
+    height: 100%;
 }
 
-.app-icon::before {
-    content: "⚛️"; /* Использование эмодзи в качестве заглушки для сложной иконки */
-    font-size: 60px;
-    display: block;
-    line-height: 1; /* Для лучшего вертикального выравнивания эмодзи */
-}
-
-
-/* Стили, специфичные для Экрана 1 */
-.welcome-screen {
-    justify-content: center;
-    padding-bottom: 80px; /* Оставить место для потенциальной навигации снизу */
-}
-
-.welcome-text {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: #4A148C;
-    margin: 0;
-}
-
-/* Стили, специфичные для Экрана 2 */
-.onboarding-screen {
-    justify-content: flex-start; /* Выровнять контент по верхнему краю */
-    padding-top: 20px; /* Больший отступ сверху для заголовка */
-}
-
-.onboarding-title {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: #4A148C;
-    margin-bottom: 30px;
-    padding: 0 10px; /* Небольшой горизонтальный отступ для заголовка */
-}
-
-.card {
-    background-color: #9C27B0; /* Более темный фиолетовый для карточки */
-    border-radius: 20px;
-    padding: 30px 20px;
-    margin: 0 20px;
-    width: calc(100% - 40px); /* Учитываем горизонтальный отступ */
-    box-sizing: border-box; /* Включаем отступ в ширину */
+.slide {
+    min-width: 20%; /* 100% / количество слайдов = 20% */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    color: white;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 0 15px; /* Внутренние отступы для контента слайда */
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: space-between; /* Распределяем контент по высоте слайда */
+}
+
+/* Общие стили для карточек */
+.card {
+    background-color: #8C5EAF; /* Фиолетовый фон карточки */
+    border-radius: 20px; /* Скругленные углы */
+    padding: 25px;
+    color: white; /* Белый текст на карточке */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    flex-grow: 1; /* Карточка занимает доступное пространство */
+    max-height: 70%; /* Ограничение высоты карточки, чтобы поместились кнопки */
+    justify-content: space-around; /* Равномерно распределяет контент внутри карточки */
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.3;
 }
 
 .card-icon {
-    width: 80px; /* Чуть меньшая иконка в карточке */
-    height: 80px;
-    background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый для фона иконки карточки */
+    width: 90px; /* Размер иконки */
+    height: 90px;
+    background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон для иконки */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
-}
-.card-icon::before {
-    font-size: 48px; /* Настроить размер эмодзи для карточки */
+    overflow: hidden; /* Обрезает изображение, если оно выходит за пределы круга */
 }
 
-.card-text {
+.card-icon img {
+    max-width: 80%; /* Размер PNG-изображения внутри круга */
+    max-height: 80%;
+    object-fit: contain; /* Сохраняет пропорции и помещает изображение внутри контейнера */
+}
+
+.card-description {
     font-size: 16px;
     line-height: 1.5;
-    color: white;
-    margin: 0;
+    opacity: 0.9;
 }
+
+/* Стиль для первого слайда (без карточки) */
+.slide-intro {
+    background-color: #8C5EAF;
+    border-radius: 20px;
+    padding: 25px;
+    color: white;
+    margin-top: 20px;
+    flex-grow: 1;
+    max-height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.slide-intro .intro-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.slide-intro .intro-icon {
+    width: 90px;
+    height: 90px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    overflow: hidden; /* Обрезает изображение, если оно выходит за пределы круга */
+}
+
+.slide-intro .intro-icon img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.slide-intro .intro-description {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
 
 .pagination {
     display: flex;
-    margin-top: 30px;
+    justify-content: center;
+    margin: 20px 0;
+    margin-bottom: 30px;
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
-    background-color: rgba(74, 20, 140, 0.3); /* Более светлый фиолетовый для неактивных точек */
+    height: 10px;
+    width: 10px;
+    background-color: rgba(93, 62, 123, 0.4); /* Полупрозрачный темно-фиолетовый */
     border-radius: 50%;
     margin: 0 5px;
-}
-
-.dot.active {
-    background-color: #4A148C; /* Темно-фиолетовый для активной точки */
-    width: 12px; /* Чуть шире активная точка */
-}
-
-.footer {
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    margin-top: auto; /* Прижать к низу */
-}
-
-.button {
-    background-color: #6A1B9A; /* Фиолетовый цвет кнопки */
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 80%; /* Ширина кнопки */
-    max-width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    background-color: #7B1FA2; /* Чуть светлее при наведении */
+.dot.active {
+    background-color: #5D3E7B; /* Активный темно-фиолетовый */
 }
 
-/* Нижняя полоса (индикатор "домой") */
-.bottom-bar {
-    height: 5px; /* Высота полосы индикатора "домой" */
-    width: 134px; /* Ширина полосы индикатора "домой" */
-    background-color: #000; /* Черный для индикатора "домой" */
-    border-radius: 2.5px;
-    position: absolute;
-    bottom: 10px; /* Расстояние от низа */
-    left: 50%;
-    transform: translateX(-50%);
+.next-button {
+    background-color: #8C5EAF; /* Фиолетовый фон кнопки */
+    color: white;
+    border: none;
+    border-radius: 15px; /* Скругленные углы */
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.next-button:hover {
+    background-color: #7A4E9E; /* Темнее при наведении */
+}
+
+/* Адаптация для очень маленьких экранов (если нужно) */
+@media (max-height: 650px) {
+    .card, .slide-intro {
+        padding: 15px;
+        max-height: 65%;
+    }
+    .card-header, .intro-header {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .card-icon, .intro-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 15px;
+    }
+    .card-icon img, .intro-icon img {
+        max-width: 70%;
+        max-height: 70%;
+    }
+    .card-description, .intro-description {
+        font-size: 14px;
+    }
+    .next-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+    .pagination {
+        margin: 15px 0;
+    }
 }

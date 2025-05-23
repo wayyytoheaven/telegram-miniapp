@@ -7,72 +7,82 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <div class="screen" id="screen1">
-            <header class="header">
-                <span class="close-btn">&times;</span>
-                <span class="title">VIVEKA ASTRO GPT</span>
-                <span class="menu-btn">&#8226;&#8226;&#8226;</span>
-            </header>
-            <div class="content welcome-screen">
-                <img src="png/Welcome_logo.png" alt="Иконка приложения" class="app-icon">
-                <p class="welcome-text">Добро пожаловать в<br>VIVEKA ASTRO GPT!</p>
-            </div>
-            <div class="bottom-bar"></div>
-        </div>
 
-        <div class="screen hidden" id="screen2">
-            <header class="header">
-                <span class="close-btn">&times;</span>
-                <span class="title">VIVEKA ASTRO GPT</span>
-                <span class="menu-btn">&#8226;&#8226;&#8226;</span>
-            </header>
-            <div class="content onboarding-screen">
-                <h1 class="onboarding-title">Откройте для себя мир джйотиш-астрологии с VIVEKA ASTRO GPT</h1>
-                <div class="card">
-                    <img src="png/Logo.png" alt="Иконка приложения" class="app-icon card-icon">
-                    <p class="card-text">Первая специализированная нейросеть, созданная для того, чтобы помочь вам разобраться в сложностях жизни и найти ответы на важные вопросы.</p>
-                </div>
-                <div class="pagination">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-            </div>
-            <div class="footer">
-                <button class="button">Далее</button>
-            </div>
-            <div class="bottom-bar"></div>
+    <div class="splash-screen" id="splashScreen">
+        <div class="logo">
+            <img src="png/Logo.png" alt="Логотип">
         </div>
+        <div class="welcome-text">Добро пожаловать в</div>
+        <div class="app-name">VIVEKA ASTRO GPT!</div>
     </div>
 
-    <script>
-        // Простой JavaScript для переключения между экранами для демонстрации
-        document.addEventListener('DOMContentLoaded', () => {
-            const screen1 = document.getElementById('screen1');
-            const screen2 = document.getElementById('screen2');
-            const nextButton = document.querySelector('#screen2 .button');
+    <div class="slider-container hidden" id="onboardingSlider">
+        <div class="slide-wrapper" id="slideWrapper">
+            <div class="slide">
+                <div class="slide-intro">
+                    <div class="intro-header">Откройте для себя мир джайотхиш-астрологии с <br> VIVEKA ASTRO GPT</div>
+                    <div class="intro-icon">
+                        <img src="png/Logo.png" alt="Компас">
+                    </div>
+                    <div class="intro-description">Первая специализированная нейросеть, созданная для того, чтобы помочь вам разобраться в сложности жизни и найти ответы на важные вопросы.</div>
+                </div>
+            </div>
 
-            // Изначально показываем Экран 1
-            screen1.classList.remove('hidden');
-            screen2.classList.add('hidden');
+            <div class="slide">
+                <div class="card">
+                    <div class="card-header">С помощью нашего приложения вы сможете:</div>
+                    <div class="card-icon">
+                        <img src="png/Sun.png" alt="Понимание себя">
+                    </div>
+                    <div class="card-description">
+                        Получить глубокое понимание себя<br><br>Узнайте о своих сильных и слабых сторонах, а также о том, как астрология может помочь вам раскрыть ваш потенциал.
+                    </div>
+                </div>
+            </div>
 
-            // Пример: клик по Экрану 1 переводит на Экран 2
-            screen1.addEventListener('click', () => {
-                screen1.classList.add('hidden');
-                screen2.classList.remove('hidden');
-            });
+            <div class="slide">
+                <div class="card">
+                    <div class="card-header">С помощью нашего приложения вы сможете:</div>
+                    <div class="card-icon">
+                        <img src="png/Feather.png" alt="Благоприятные даты">
+                    </div>
+                    <div class="card-description">
+                        Подобрать благоприятные даты<br><br>Понимание астрологических циклов поможет вам выбрать оптимальные моменты для начала новых проектов, важных встреч или личных изменений.
+                    </div>
+                </div>
+            </div>
 
-            // Пример: клик по кнопке "Далее" показывает уведомление (или выполняет дальнейшую навигацию)
-            if (nextButton) {
-                nextButton.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Предотвращаем всплытие клика до screen1, если он был виден
-                    alert('Кнопка "Далее" нажата!');
-                    // В реальном приложении вы бы перешли на следующий экран или выполнили действие
-                });
-            }
-        });
-    </script>
+            <div class="slide">
+                <div class="card">
+                    <div class="card-header">С помощью нашего приложения вы сможете:</div>
+                    <div class="card-icon">
+                        <img src="png/Moon.png" alt="Проверить совместимость">
+                    </div>
+                    <div class="card-description">
+                        Проверить совместимость<br><br>Исследуйте свои отношения с друзьями, партнерами и коллегами. Узнайте, как ваш астрологический карты взаимодействуют друг с другом и что это значит для ваших отношений.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="card">
+                    <div class="card-header">С помощью нашего приложения вы сможете:</div>
+                    <div class="card-icon">
+                        <img src="png/Star.png" alt="Задать вопросы эксперту">
+                    </div>
+                    <div class="card-description">
+                        Задавать вопросы эксперту<br><br>Воспользуйтесь возможностью задать свои вопросы и получить профессиональные рекомендации от нашей нейросети, которая использует передовые технологии для анализа астрологических данных.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination" id="paginationDots">
+            </div>
+
+        <button class="next-button" id="nextButton">Далее</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
