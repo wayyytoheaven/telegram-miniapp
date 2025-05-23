@@ -1,23 +1,21 @@
-/* ОБЩИЕ СТИЛИ */
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #DCCAE9; /* Светло-фиолетовый фон всей страницы */
+    background-color: #DCCAE9;
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #5D3E7B; /* Темно-фиолетовый цвет текста по умолчанию */
+    color: #5D3E7B;
     overflow: hidden;
     position: relative;
 }
 
-/* Класс для скрытия элементов */
 .hidden {
     display: none !important;
 }
 
-/* СТИЛИ ЗАГРУЗОЧНОГО ЭКРАНА (без изменений) */
 .splash-screen {
     display: flex;
     flex-direction: column;
@@ -67,7 +65,6 @@ body {
     color: #9356A0;
 }
 
-/* СТИЛИ СЛАЙДШОУ КОНТЕЙНЕРА */
 .slider-container {
     width: 100%;
     max-width: 400px;
@@ -81,7 +78,6 @@ body {
     position: relative;
 }
 
-/* ОБЕРТКА СЛАЙДОВ */
 .slides-wrapper {
     position: relative;
     width: 100%;
@@ -89,7 +85,6 @@ body {
     overflow: hidden;
 }
 
-/* СТИЛИ ОТДЕЛЬНЫХ СЛАЙДОВ */
 .slide {
     position: absolute;
     top: 0;
@@ -102,20 +97,19 @@ body {
     text-align: center;
     padding: 0 15px;
     box-sizing: border-box;
-    transition: opacity 0.5s ease-in-out; /* Плавное появление/исчезновение */
+    transition: opacity 0.5s ease-in-out;
     opacity: 0;
     pointer-events: none;
     justify-content: flex-start;
     padding-top: 40px;
 }
 
-.slide.active { /* Активный слайд */
+.slide.active {
     opacity: 1;
     pointer-events: auto;
     z-index: 1;
 }
 
-/* СТИЛИ ДЛЯ ВЕРХНЕГО ЗАГОЛОВКА ВСЕХ СЛАЙДОВ (без изменений) */
 .top-header {
     font-size: 20px;
     font-weight: bold;
@@ -125,7 +119,6 @@ body {
     margin-top: 40px;
 }
 
-/* СТИЛИ ДЛЯ ВСЕХ ФИОЛЕТОВЫХ КАРТОЧЕК (контентных блоков) */
 .content-card {
     background-color: #9356A0;
     border-radius: 20px;
@@ -135,17 +128,15 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-height: calc(100% - 200px); /* Adjust this value if content overflows */
+    max-height: calc(100% - 200px);
     justify-content: space-around;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
 
-/* ИЗМЕНЕНИЯ ЗДЕСЬ: Увеличение картинки и удаление обводки */
 .card-icon {
-    /* Удален background-color и border-radius для обводки */
-    width: 120px; /* Увеличиваем размер контейнера для иконки */
-    height: 120px; /* Увеличиваем размер контейнера для иконки */
+    width: 120px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,10 +145,9 @@ body {
 }
 
 .card-icon img {
-    /* Увеличиваем размер самой картинки, чтобы она занимала больше места в контейнере */
-    max-width: 100%; /* Занимает всю ширину своего родителя (card-icon) */
-    max-height: 100%; /* Занимает всю высоту своего родителя (card-icon) */
-    object-fit: contain; /* Сохраняет пропорции */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .card-description {
@@ -167,8 +157,6 @@ body {
     color: white;
 }
 
-
-/* ПАГИНАЦИЯ И КНОПКА (без изменений) */
 .pagination {
     display: flex;
     justify-content: center;
@@ -188,11 +176,11 @@ body {
 }
 
 .dot.active {
-    background-color: #5D3E7B;
+    background-color: #9356A0;
 }
 
 .next-button {
-    background-color: #8C5EAF;
+    background-color: #9356A0;
     color: white;
     border: none;
     border-radius: 15px;
@@ -211,8 +199,6 @@ body {
 .next-button:hover {
     background-color: #7A4E9E;
 }
-
-/* АДАПТАЦИЯ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ (с учетом новых размеров иконок) */
 @media (max-height: 650px) {
     .top-header {
         font-size: 18px;
@@ -223,13 +209,13 @@ body {
         padding: 15px;
         max-height: calc(100% - 150px);
     }
-    .card-icon { /* Изменения для иконки на маленьких экранах */
-        width: 90px; /* Уменьшаем контейнер */
+    .card-icon {
+        width: 90px;
         height: 90px;
         margin-bottom: 15px;
     }
     .card-icon img {
-        max-width: 100%; /* Также занимаем всю ширину контейнера */
+        max-width: 100%; 
         max-height: 100%;
     }
     .card-description {
