@@ -1,55 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
     const splashScreen = document.getElementById('splashScreen');
     const onboardingSlider = document.getElementById('onboardingSlider');
-    const slideWrapper = document.getElementById('slideWrapper');
+    const slidesWrapper = document.getElementById('slidesWrapper'); // Изменил ID
+    const slides = document.querySelectorAll('.slide'); // Получаем все элементы слайдов
     const nextButton = document.getElementById('nextButton');
     const paginationDotsContainer = document.getElementById('paginationDots');
 
-    const totalSlides = 5; // Всего 5 слайдов
+    const totalSlides = slides.length; // Количество слайдов определяем динамически
     let currentSlide = 0;
 
-    // --- Логика загрузочного экрана ---
-    // Функция для скрытия загрузочного экрана и показа слайдшоу
+    // --- Логика загрузочного экрана (без изменений) ---
     function hideSplashScreen() {
-        // Добавляем класс для плавного исчезновения
         splashScreen.classList.add('fade-out');
-        // Через некоторое время после начала исчезновения, полностью скрываем элемент
         setTimeout(() => {
             splashScreen.classList.add('hidden');
-            onboardingSlider.classList.remove('hidden'); // Показываем слайдшоу
-            // Принудительно обновляем слайдер, чтобы убедиться, что он отображается корректно
-            updateSlider();
-        }, 500); // Соответствует длительности transition в CSS
+            onboardingSlider.classList.remove('hidden');
+            updateSlider(); // Показываем первый слайд после загрузочного экрана
+        }, 500);
     }
+    setTimeout(hideSplashScreen, 3000);
 
-    // Показываем загрузочный экран на 3 секунды, затем скрываем
-    setTimeout(hideSplashScreen, 3000); // Можно настроить время отображения
+    // --- Логика слайдшоу ---
 
-    // --- Логика слайдшоу (без изменений) ---
-
-    // Создаем точки пагинации динамически
+    // Создаем точки пагинации динамически (без изменений)
     function createPaginationDots() {
-        paginationDotsContainer.innerHTML = ''; // Очищаем существующие
+        paginationDotsContainer.innerHTML = '';
         for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement('span');
             dot.classList.add('dot');
-            if (i === 0) {
-                dot.classList.add('active');
-            }
             dot.addEventListener('click', () => goToSlide(i));
             paginationDotsContainer.appendChild(dot);
         }
     }
 
-    // Обновляет положение слайдера и активную точку пагинации
+    // Обновляет видимость слайдов и активную точку пагинации
     function updateSlider() {
-        const offset = -currentSlide * (100 / totalSlides); // Вычисляем смещение
-        slideWrapper.style.transform = `translateX(${offset}%)`;
+        // Скрываем все слайды
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            slide.classList.add('hidden'); // Убедимся, что скрыт и через display: none
+        });
+
+        // Показываем текущий слайд
+        slides[currentSlide].classList.remove('hidden');
+        slides[currentSlide].classList.add('active');
+
         updatePaginationDots();
         updateButtonText();
     }
 
-    // Обновляет активную точку пагинации
+    // Обновляет активную точку пагинации (без изменений)
     function updatePaginationDots() {
         const dots = paginationDotsContainer.querySelectorAll('.dot');
         dots.forEach((dot, index) => {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Обновляет текст кнопки "Далее" / "Начать"
+    // Обновляет текст кнопки "Далее" / "Начать" (без изменений)
     function updateButtonText() {
         if (currentSlide === totalSlides - 1) {
             nextButton.textContent = 'Начать';
@@ -66,32 +66,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Переход к следующему слайду или завершение слайдшоу
+    // Переход к следующему слайду или завершение слайдшоу (без изменений)
     function nextSlide() {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
+            updateSlider();
         } else {
-            // Если это последний слайд, можно выполнить действие
             alert('Слайдшоу завершено! Начинаем работу с VIVEKA ASTRO GPT.');
-            // В реальном Telegram Web App здесь могла бы быть команда:
-            // Telegram.WebApp.close();
-            // Telegram.WebApp.openLink('https://ваше_приложение.com/main');
-            // Telegram.WebApp.sendData(JSON.stringify({ event: 'onboarding_finished' }));
+            // Дополнительные действия после завершения
         }
-        updateSlider();
     }
 
-    // Переход к определенному слайду
+    // Переход к определенному слайду (без изменений)
     function goToSlide(index) {
         currentSlide = index;
         updateSlider();
     }
 
-    // Инициализация слайдшоу (вызывается только после скрытия splash screen)
-    // Эти функции будут вызваны при старте слайдшоу
+    // --- Инициализация ---
     createPaginationDots();
     // updateSlider() вызывается после hideSplashScreen
     
-    // Добавляем слушатель события на кнопку
+    // Добавляем слушатель события на кнопку (без изменений)
     nextButton.addEventListener('click', nextSlide);
+
+    // Изначально скрываем все слайды, кроме первого, чтобы они не мерцали
+    slides.forEach((slide, index) => {
+        if (index !== currentSlide) {
+            slide.classList.add('hidden');
+        }
+    });
 });
