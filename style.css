@@ -1,21 +1,23 @@
-
+/* ОБЩИЕ СТИЛИ */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #DCCAE9;
+    background-color: #DCCAE9; /* Светло-фиолетовый фон всей страницы */
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #5D3E7B;
+    color: #5D3E7B; /* Темно-фиолетовый цвет текста по умолчанию */
     overflow: hidden;
     position: relative;
 }
 
+/* Класс для скрытия элементов */
 .hidden {
     display: none !important;
 }
 
+/* СТИЛИ ЗАГРУЗОЧНОГО ЭКРАНА (без изменений) */
 .splash-screen {
     display: flex;
     flex-direction: column;
@@ -65,6 +67,7 @@ body {
     color: #9356A0;
 }
 
+/* СТИЛИ СЛАЙДШОУ КОНТЕЙНЕРА */
 .slider-container {
     width: 100%;
     max-width: 400px;
@@ -78,6 +81,7 @@ body {
     position: relative;
 }
 
+/* ОБЕРТКА СЛАЙДОВ */
 .slides-wrapper {
     position: relative;
     width: 100%;
@@ -85,6 +89,7 @@ body {
     overflow: hidden;
 }
 
+/* СТИЛИ ОТДЕЛЬНЫХ СЛАЙДОВ */
 .slide {
     position: absolute;
     top: 0;
@@ -104,12 +109,13 @@ body {
     padding-top: 40px;
 }
 
-.slide.active {
+.slide.active { /* Активный слайд */
     opacity: 1;
     pointer-events: auto;
     z-index: 1;
 }
 
+/* СТИЛИ ДЛЯ ВЕРХНЕГО ЗАГОЛОВКА ВСЕХ СЛАЙДОВ (без изменений) */
 .top-header {
     font-size: 20px;
     font-weight: bold;
@@ -119,44 +125,50 @@ body {
     margin-top: 40px;
 }
 
-.content-card {
-    background-color: #9356A0;
-    border-radius: 20px;
-    padding: 25px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-height: calc(100% - 200px);
-    justify-content: space-around;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
+/* НОВЫЕ СТИЛИ ДЛЯ КОНТЕНТНЫХ КАРТОЧЕК-ИЗОБРАЖЕНИЙ */
+.content-image-card {
+    width: 343px;
+    /* Если изображения имеют белый фон, который нужно "закрыть",
+       и они уже имеют тот же фиолетовый оттенок, что и карточки,
+       то можно использовать background-color: #9356A0;
+       Однако, если картинка сама по себе уже фиолетовая и имеет нужные отступы/радиусы,
+       то фон у этого DIV'а можно убрать, и он будет прозрачным,
+       пропуская фон body или слайда.
+       Судя по вашим картинкам, они УЖЕ фиолетовые и с текстом,
+       значит, этот div должен просто отобразить картинку.
+       background-color: #9356A0; /* Можно оставить или удалить, если фон картинки уже фиолетовый */
+    
+    height: 340px; /* Примерная фиксированная высота. Подберите, чтобы картинки хорошо смотрелись */
+    
+    /* ИЗМЕНЕНИЕ ЗДЕСЬ: используем cover, чтобы картинка покрывала всю область */
+    background-size: cover; /* Изображение будет покрывать всю область, обрезая лишнее */
+    background-repeat: no-repeat;
+    background-position: center; /* Центрируем изображение */
+    border-radius: 20px; /* Сохраняем округлые углы, как у предыдущих карточек */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Сохраняем тень */
+    flex-shrink: 0;
+    margin-bottom: auto;
 }
 
-.card-icon {
-    width: 120px;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    overflow: hidden;
+/* Специфичные фоновые изображения для каждой карточки */
+.card-about1 {
+    background-image: url('about1.png');
+}
+.card-point1 {
+    background-image: url('point1.png');
+}
+.card-point2 {
+    background-image: url('point2.png');
+}
+.card-point3 {
+    background-image: url('point3.png');
+}
+.card-point4 {
+    background-image: url('point4.png');
 }
 
-.card-icon img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
 
-.card-description {
-    font-size: 16px;
-    line-height: 1.5;
-    opacity: 0.9;
-    color: white;
-}
-
+/* ПАГИНАЦИЯ И КНОПКА (без изменений) */
 .pagination {
     display: flex;
     justify-content: center;
@@ -199,28 +211,18 @@ body {
 .next-button:hover {
     background-color: #7A4E9E;
 }
+
+/* АДАПТАЦИЯ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ (корректировка высоты изображений) */
 @media (max-height: 650px) {
     .top-header {
         font-size: 18px;
         margin-bottom: 20px;
         margin-top: 25px;
     }
-    .content-card {
-        padding: 15px;
-        max-height: calc(100% - 150px);
+    .content-image-card { /* Изменение высоты для маленьких экранов */
+        height: 300px; /* Скорректировать высоту, если нужно */
     }
-    .card-icon {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 15px;
-    }
-    .card-icon img {
-        max-width: 100%; 
-        max-height: 100%;
-    }
-    .card-description {
-        font-size: 14px;
-    }
+    /* card-description не используется, поэтому удаляю его из медиазапроса */
     .next-button {
         padding: 12px 25px;
         font-size: 16px;
