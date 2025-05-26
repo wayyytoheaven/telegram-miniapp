@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.slide');
     const nextButton = document.getElementById('nextButton');
     const paginationDotsContainer = document.getElementById('paginationDots');
-    const totalSlides = slides.length; // Это автоматически будет 6 после добавления нового слайда
+    const totalSlides = slides.length;
     let currentSlide = 0;
 
     function hideSplashScreen() {
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[currentSlide].classList.add('active');
 
         updatePaginationDots();
-        updateButtonText();
     }
 
     function updatePaginationDots() {
@@ -49,11 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateButtonText() {
-        if (currentSlide === totalSlides - 1) {
-            nextButton.textContent = 'Начать';
-        } else {
-            nextButton.textContent = 'Далее';
-        }
+        nextButton.textContent = 'Далее';
     }
 
     function nextSlide() {
@@ -61,8 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSlide++;
             updateSlider();
         } else {
-            alert('Слайдшоу завершено! Начинаем работу с VIVEKA ASTRO GPT.');
-            // Здесь можно добавить перенаправление на следующую страницу или показать основной интерфейс приложения
+            window.location.href = 'register.html';
         }
     }
 
@@ -73,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createPaginationDots();
     nextButton.addEventListener('click', nextSlide);
+    updateButtonText();
     slides.forEach((slide, index) => {
         if (index !== currentSlide) {
             slide.classList.add('hidden');
