@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmButton = document.getElementById('confirmButton');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const loadingSpinner = document.getElementById('loadingSpinner');
-
-    // Получаем поле для имени
-    const nameInput = document.getElementById('name'); // Добавлено
+    const nameInput = document.getElementById('name');
 
     const loadingImages = [
         'load/Step 1.png',
@@ -51,12 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (confirmButton) {
         confirmButton.addEventListener('click', () => {
-            // Сохраняем имя пользователя в localStorage перед перенаправлением
             const userName = nameInput.value.trim();
             if (userName) {
                 localStorage.setItem('userName', userName);
             } else {
-                localStorage.removeItem('userName'); // Удаляем, если пусто
+                localStorage.removeItem('userName');
             }
 
             confirmationModal.classList.add('hidden');
