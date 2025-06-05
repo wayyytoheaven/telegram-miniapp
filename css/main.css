@@ -16,6 +16,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #E9E0F3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .top-nav {
@@ -34,7 +36,7 @@ body {
 }
 
 .user-profile-button {
-    background-color: #7A4E9E;
+    background-color: #9356A0;
     border: none;
     border-radius: 10px;
     padding: 8px 12px;
@@ -55,7 +57,7 @@ body {
 .user-profile-button .user-avatar {
     width: 30px;
     height: 30px;
-    background-color: #9356A0;
+    background-color: #724C9D;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -77,11 +79,11 @@ body {
 }
 
 .action-button.add-person-button {
-    background-color: #DCCAE9;
+    background-color: #9356A0;
     font-size: 24px;
     padding: 5px 12px;
     border-radius: 10px;
-    color: #9356A0;
+    color: #DCCAE9;
 }
 
 .top-actions-right {
@@ -118,7 +120,7 @@ body {
 
 .action-button.score-button {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 5px 8px;
@@ -128,8 +130,13 @@ body {
 
 .action-button.score-button img {
     height: 18px;
-    margin-right: 0;
-    margin-bottom: 2px;
+    margin-right: 4px;
+    margin-bottom: 0;
+    filter: none;
+}
+
+.action-button.score-button span {
+    color: white;
 }
 
 .action-button.menu-button {
@@ -232,11 +239,11 @@ body {
 }
 
 .nav-item.active {
-    color: #DCCAE9;
+    color: #9356A0;
 }
 
 .nav-item.active img {
-    filter: none;
+    filter: brightness(0) saturate(100%) invert(39%) sepia(87%) saturate(1072%) hue-rotate(244deg) brightness(69%) contrast(93%);
 }
 
 .nav-item:hover {

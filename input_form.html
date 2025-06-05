@@ -47,11 +47,83 @@
             </div>
         </div>
     </div>
+    
     <div class="loading-overlay hidden" id="loadingOverlay">
-        <div class="loading-spinner" id="loadingSpinner">
-            </div>
-        <div class="loading-text">Рассчитываем карту...</div>
+        <div class="loading-spinner">
+            <img id="loadingImage" src="load/Step 1.png" alt="Загрузка"> </div>
+        <div class="loading-text">Рассчитываем Вашу карту...</div>
     </div>
-    <script src="scripts/input_form.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const calculateButton = document.getElementById('calculateButton');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const editButton = document.getElementById('editButton');
+            const confirmButton = document.getElementById('confirmButton');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const loadingImage = document.getElementById('loadingImage'); // Получаем ссылку на img в спиннере
+
+            const imagePaths = [
+                'load/Step 1.png',
+                'load/Step 2.png',
+                'load/Step 3.png',
+                'load/Step 4.png',
+                'load/Step 5.png',
+                'load/Step 6.png'
+            ];
+            let currentImageIndex = 0;
+            let animationInterval;
+
+            function startLoadingAnimation() {
+                currentImageIndex = 0;
+                loadingImage.src = imagePaths[currentImageIndex]; // Устанавливаем первый кадр сразу
+                animationInterval = setInterval(() => {
+                    currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+                    loadingImage.src = imagePaths[currentImageIndex];
+                }, 100); // Меняем кадр каждые 100 мс (можно настроить скорость)
+            }
+
+            function stopLoadingAnimation() {
+                clearInterval(animationInterval);
+            }
+
+            function showConfirmationModal() {
+                confirmationModal.classList.remove('hidden');
+            }
+
+            function hideConfirmationModal() {
+                confirmationModal.classList.add('hidden');
+            }
+
+            function showLoadingOverlay() {
+                startLoadingAnimation(); // Начинаем анимацию при показе
+                loadingOverlay.classList.remove('hidden');
+            }
+
+            function hideLoadingOverlay() {
+                stopLoadingAnimation(); // Останавливаем анимацию при скрытии
+                loadingOverlay.classList.add('hidden');
+            }
+
+            calculateButton.addEventListener('click', () => {
+                showConfirmationModal();
+            });
+
+            editButton.addEventListener('click', () => {
+                hideConfirmationModal();
+            });
+
+            confirmButton.addEventListener('click', () => {
+                hideConfirmationModal();
+                showLoadingOverlay();
+
+                // Имитация загрузки данных
+                setTimeout(() => {
+                    hideLoadingOverlay();
+                    window.location.href = 'main.html';
+                }, 3000);
+            });
+        });
+    </script>
 </body>
 </html>
