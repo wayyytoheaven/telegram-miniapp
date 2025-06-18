@@ -20,6 +20,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Header styles */
 .top-nav {
     display: flex;
     justify-content: space-between;
@@ -27,6 +28,7 @@ body {
     padding: 15px 20px;
     background-color: #724C9D;
     color: white;
+    flex-shrink: 0;
 }
 
 .top-actions-left {
@@ -39,14 +41,18 @@ body {
     background-color: #9356A0;
     border: none;
     border-radius: 10px;
-    padding: 8px 12px;
+    /* Уменьшим padding, чтобы буква была больше */
+    padding: 5px; /* Было 8px 12px */
     cursor: pointer;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Осталось column для центрирования, если хотим вертикальное выравнивание */
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s ease, transform 0.2s ease;
-    min-width: 60px;
+    /* Уберем min-width, чтобы кнопка подстраивалась под аватар, или зададим по размеру аватара */
+    min-width: 40px; /* Было 60px */
+    height: 40px; /* Добавляем фиксированную высоту для квадратной кнопки */
+    box-sizing: border-box; /* Важно для учета padding в размере */
 }
 
 .user-profile-button:hover {
@@ -55,40 +61,24 @@ body {
 }
 
 .user-profile-button .user-avatar {
-    width: 30px;
-    height: 30px;
-    background-color: #724C9D;
-    border-radius: 5px;
+    /* Увеличиваем размер аватара, чтобы он занимал почти всю кнопку */
+    width: 30px; /* Было 30px, но теперь без имени, можем сделать больше */
+    height: 30px; /* Было 30px */
+    background-color: #9356A0;
+    border-radius: 5px; /* Используем border-radius как на скриншоте */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 20px; /* Увеличиваем размер шрифта */
     font-weight: 500;
     color: white;
-    margin-bottom: 3px;
+    /* Удаляем margin-bottom, так как имени нет */
+    margin-bottom: 0; 
 }
 
+/* Скрываем имя пользователя */
 .user-profile-button .user-name {
-    font-size: 12px;
-    font-weight: 500;
-    color: white;
-    text-align: center;
-    line-height: 1.2;
-    background-color: transparent;
-    padding: 0;
-}
-
-.action-button.add-person-button {
-    background-color: #9356A0;
-    font-size: 24px;
-    padding: 5px 12px;
-    border-radius: 10px;
-    color: #DCCAE9;
-}
-
-.top-actions-right {
-    display: flex;
-    gap: 10px;
+    display: none; /* Прячем текст имени */
 }
 
 .action-button {
@@ -114,46 +104,54 @@ body {
     transform: translateY(-1px);
 }
 
-.action-button img {
-    height: 20px;
+.top-actions-right {
+    display: flex;
+    gap: 10px;
 }
 
 .action-button.score-button {
+    /* Обновленные стили для кнопки со счетом */
+    background-color: #C0A8D5; /* Цвет кнопки "100" со звездой */
+    color: #724C9D; /* Цвет текста "100" */
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Текст и изображение в ряд */
     align-items: center;
     justify-content: center;
-    padding: 5px 8px;
+    padding: 5px 12px; /* Подгоняем паддинг */
     min-width: unset;
     min-height: unset;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px; /* Скругляем углы */
 }
 
 .action-button.score-button img {
     height: 18px;
-    margin-right: 4px;
+    margin-left: 4px;
     margin-bottom: 0;
-    filter: none;
+    /* Этот фильтр преобразует белый цвет в фиолетовый (#9356A0) */
+    filter: brightness(0) saturate(100%) invert(39%) sepia(87%) saturate(1072%) hue-rotate(244deg) brightness(69%) contrast(93%);
 }
 
-.action-button.score-button span {
-    color: white;
+/* Бургер-меню удалено, стили для него больше не нужны */
+/* .action-button.menu-button { ... } */
+/* .action-button.menu-button .hamburger { ... } */
+
+.action-button.dots-button {
+    background-color: #9356A0; /* Цвет как у user-profile-button */
+    padding: 5px 12px; /* Подгоняем паддинг */
+    gap: 2px;
+    flex-direction: column; /* Точки вертикально */
+}
+.action-button.dots-button .dot {
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
 }
 
-.action-button.menu-button {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    gap: 3px;
-}
 
-.action-button.menu-button .hamburger {
-    width: 20px;
-    height: 2px;
-    background-color: #DCCAE9;
-    border-radius: 1px;
-}
-
+/* Content Area */
 .content-area {
     flex-grow: 1;
     padding: 20px;
@@ -208,6 +206,8 @@ body {
     line-height: 1.3;
 }
 
+
+/* Bottom Navigation */
 .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -215,19 +215,23 @@ body {
     background-color: #724C9D;
     padding: 10px 0;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
 }
 
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: white; /* Цвет текста по умолчанию белый */
     text-decoration: none;
     font-size: 12px;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease;
     padding: 5px 0;
     flex: 1;
+    position: relative; /* Добавляем для позиционирования псевдоэлемента */
+    overflow: hidden; /* Чтобы полоска не выходила за границы, если она будет шире */
+    border-radius: 0; /* Уберем border-radius, так как на image_4df5f4.png фон без скруглений */
 }
 
 .nav-item img {
@@ -235,21 +239,42 @@ body {
     height: 24px;
     object-fit: contain;
     margin-bottom: 5px;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1); /* Делает иконки белыми по умолчанию */
 }
 
+/* Стили для активного пункта навигации */
 .nav-item.active {
-    color: #9356A0;
+    background-color: #9356A0; /* Фиолетовый фон для активного пункта */
+    color: white; /* Белый текст для активного пункта */
 }
 
 .nav-item.active img {
-    filter: brightness(0) saturate(100%) invert(39%) sepia(87%) saturate(1072%) hue-rotate(244deg) brightness(69%) contrast(93%);
+    filter: brightness(0) invert(1); /* Активная иконка также белая */
 }
 
+/* Добавляем черную полоску под активным пунктом */
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Прикрепляем к низу */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Точно центрируем */
+    width: 40px; /* Ширина полоски (можно настроить) */
+    height: 3px; /* Высота полоски */
+    background-color: black; /* Цвет полоски */
+    border-radius: 1.5px; /* Немного скругляем концы */
+}
+
+/* Удаляем hover эффект, который менял цвет текста на фиолетовый, если он вам не нужен для активных элементов */
 .nav-item:hover {
-    color: #DCCAE9;
+    color: #DCCAE9; /* Оставляем hover эффект для неактивных */
+}
+.nav-item.active:hover {
+    color: white; /* Для активных hover не должен менять цвет текста */
+    background-color: #9356A0; /* Для активных hover не должен менять фон */
 }
 
+/* Media queries */
 @media (max-height: 700px) {
     .top-nav {
         padding: 10px 15px;
@@ -267,7 +292,7 @@ body {
     .user-profile-button .user-name {
         font-size: 11px;
     }
-    .action-button.add-person-button {
+    .action-button.add-person-button { /* Этот блок больше не используется, но оставляю комментарий */
         font-size: 22px;
         padding: 4px 10px;
     }

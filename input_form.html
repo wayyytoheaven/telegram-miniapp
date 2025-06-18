@@ -61,8 +61,14 @@
             const editButton = document.getElementById('editButton');
             const confirmButton = document.getElementById('confirmButton');
             const loadingOverlay = document.getElementById('loadingOverlay');
-            const loadingImage = document.getElementById('loadingImage'); // Получаем ссылку на img в спиннере
-
+            const loadingImage = document.getElementById('loadingImage');
+    
+            // Поля ввода
+            const nameInput = document.getElementById('name');
+            const birthDateInput = document.getElementById('birthDate');
+            const birthTimeInput = document.getElementById('birthTime');
+            const birthPlaceInput = document.getElementById('birthPlace');
+    
             const imagePaths = [
                 'load/Step 1.png',
                 'load/Step 2.png',
@@ -73,57 +79,109 @@
             ];
             let currentImageIndex = 0;
             let animationInterval;
-
+    
+            // Генерация простого UUID
+            function generateUUID() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+    
             function startLoadingAnimation() {
                 currentImageIndex = 0;
-                loadingImage.src = imagePaths[currentImageIndex]; // Устанавливаем первый кадр сразу
-                animationInterval = setInterval(() => {
-                    currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+                if (loadingImage) {
                     loadingImage.src = imagePaths[currentImageIndex];
-                }, 100); // Меняем кадр каждые 100 мс (можно настроить скорость)
+                    animationInterval = setInterval(() => {
+                        currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+                        loadingImage.src = imagePaths[currentImageIndex];
+                    }, 100);
+                }
             }
-
+    
             function stopLoadingAnimation() {
                 clearInterval(animationInterval);
             }
-
+    
             function showConfirmationModal() {
-                confirmationModal.classList.remove('hidden');
+                if (confirmationModal) {
+                    confirmationModal.classList.remove('hidden');
+                }
             }
-
+    
             function hideConfirmationModal() {
-                confirmationModal.classList.add('hidden');
+                if (confirmationModal) {
+                    confirmationModal.classList.add('hidden');
+                }
             }
-
+    
             function showLoadingOverlay() {
-                startLoadingAnimation(); // Начинаем анимацию при показе
-                loadingOverlay.classList.remove('hidden');
+                startLoadingAnimation();
+                if (loadingOverlay) {
+                    loadingOverlay.classList.remove('hidden');
+                }
             }
-
+    
             function hideLoadingOverlay() {
-                stopLoadingAnimation(); // Останавливаем анимацию при скрытии
-                loadingOverlay.classList.add('hidden');
+                stopLoadingAnimation();
+                if (loadingOverlay) {
+                    loadingOverlay.classList.add('hidden');
+                }
             }
-
-            calculateButton.addEventListener('click', () => {
-                showConfirmationModal();
-            });
-
-            editButton.addEventListener('click', () => {
-                hideConfirmationModal();
-            });
-
-            confirmButton.addEventListener('click', () => {
-                hideConfirmationModal();
-                showLoadingOverlay();
-
-                // Имитация загрузки данных
-                setTimeout(() => {
-                    hideLoadingOverlay();
-                    window.location.href = 'main.html';
-                }, 3000);
-            });
+    
+            if (calculateButton) {
+                calculateButton.addEventListener('click', () => {
+                    showConfirmationModal();
+                });
+            }
+    
+            if (editButton) {
+                editButton.addEventListener('click', () => {
+                    hideConfirmationModal();
+                });
+            }
+    
+            if (confirmButton) {
+                confirmButton.addEventListener('click', () => {
+                    const name = nameInput.value.trim();
+                    const birthDate = birthDateInput.value.trim();
+                    const birthTime = birthTimeInput.value.trim();
+                    const birthPlace = birthPlaceInput.value.trim();
+    
+                    if (!name || !birthDate || !birthTime || !birthPlace) {
+                        alert('Пожалуйста, заполните все поля!');
+                        return; // Прерываем выполнение, если поля не заполнены
+                    }
+    
+                    const newUser = {
+                        id: generateUUID(), // Генерируем уникальный ID для новой карты
+                        name: name,
+                        birthDate: birthDate,
+                        birthTime: birthTime,
+                        birthPlace: birthPlace
+                    };
+    
+                    let users = JSON.parse(localStorage.getItem('users')) || [];
+                    users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('selectedUserId', newUser.id); // Выбираем только что созданную карту
+    
+                    hideConfirmationModal();
+                    showLoadingOverlay();
+    
+                    setTimeout(() => {
+                        hideLoadingOverlay();
+                        window.location.href = 'main.html';
+                    }, 3000);
+                });
+            }
+    
+            if (confirmationModal) {
+                confirmationModal.addEventListener('click', (event) => {
+                    if (event.target === confirmationModal) {
+                        hideConfirmationModal();
+                    }
+                });
+            }
         });
     </script>
-</body>
-</html>
