@@ -1,0 +1,259 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #E9E0F3;
+    color: #5D3E7B;
+    overflow: hidden;
+}
+
+.user-cards-container {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #E9E0F3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-header {
+    background-color: #724C9D;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+}
+
+.user-cards-section {
+    background-color: #E9E0F3;
+    padding: 20px;
+    flex-grow: 1; /* Разрешаем секции занимать доступное пространство */
+    overflow-y: auto; /* Добавить прокрутку, если карт много */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступ между элементами */
+}
+
+.user-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-card {
+    display: flex;
+    align-items: center;
+    background-color: #9356A0;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+    background-color: #7A4E9E;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.user-card input[type="radio"] {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    background-color: #C0A8D5; /* Неактивный цвет радиокнопки */
+    border-radius: 50%;
+    border: 2px solid #DCCAE9;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.user-card input[type="radio"]:checked {
+    background-color: #724C9D; /* Активный цвет радиокнопки */
+    border-color: #DCCAE9;
+}
+
+/* Визуальный индикатор для checked состояния */
+.user-card input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: white; /* Цвет "точки" внутри радиокнопки */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.user-card-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 40px; /* Отступ для радиокнопки */
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #C0A8D5;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    margin-right: 15px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.user-details {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.add-new-card-button {
+    background-color: #9356A0;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.add-new-card-button:hover {
+    background-color: #7A4E9E;
+    transform: translateY(-1px);
+}
+
+.add-new-card-button .add-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.no-cards-message {
+    text-align: center;
+    color: #5D3E7B;
+    opacity: 0.7;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.selection-footer {
+    padding: 20px;
+    background-color: #E9E0F3; /* Фон, как у user-cards-section */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.select-card-button {
+    background-color: #9356A0;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+}
+
+.select-card-button:hover:not(:disabled) {
+    background-color: #7A4E9E;
+}
+
+.select-card-button.disabled {
+    background-color: #C0A8D5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Media queries */
+@media (max-height: 700px) {
+    .page-header {
+        padding: 10px 15px;
+    }
+    .page-title {
+        font-size: 18px;
+    }
+    .user-cards-section {
+        padding: 15px;
+        gap: 10px;
+    }
+    .user-card {
+        padding: 10px 12px;
+    }
+    .user-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    .user-name {
+        font-size: 15px;
+    }
+    .user-details {
+        font-size: 11px;
+    }
+    .user-card input[type="radio"] {
+        width: 18px;
+        height: 18px;
+    }
+    .add-new-card-button {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+    .add-new-card-button .add-icon {
+        font-size: 22px;
+    }
+    .selection-footer {
+        padding: 15px;
+    }
+    .select-card-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+    .no-cards-message {
+        font-size: 14px;
+    }
+}

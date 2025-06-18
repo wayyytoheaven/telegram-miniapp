@@ -15,21 +15,19 @@
             <div class="top-actions-left">
                 <button class="user-profile-button">
                     <span class="user-avatar" id="userAvatar">А</span>
-                    <span class="user-name" id="userName">Андрей</span>
                 </button>
-                <button class="action-button add-person-button">+</button>
+                <button class="action-button dots-button" id="dotsButton">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </button>
             </div>
             
             <div class="top-actions-right">
                 <button class="action-button score-button">
-                    <img src="png/Star_small.png" alt="Star"> 100
+                    100 <img src="png/Star_small.png" alt="Star"> 
                 </button>
-                <button class="action-button menu-button">
-                    <div class="hamburger"></div>
-                    <div class="hamburger"></div>
-                    <div class="hamburger"></div>
-                </button>
-            </div>
+                </div>
         </header>
 
         <main class="content-area">
@@ -40,7 +38,8 @@
                 </div>
                 <div class="main-card" id="luckyDatesCard"> 
                     <img src="png/Feather_large.png" alt="Календарь"> 
-            </div>
+                    <span class="card-title">Подбор благоприятной даты</span>
+                </div>
                 <div class="main-card">
                     <img src="png/Moon_large.png" alt="Анализ совместимости">
                     <span class="card-title">Анализ совместимости</span>
@@ -53,12 +52,11 @@
         </main>
 
         <nav class="bottom-nav">
-            <a href="#" class="nav-item active">
+            <a href="input_form.html" class="nav-item">
                 <img src="png/add_card_icon.png" alt="Добавить карту">
                 <span>Добавить карту</span>
             </a>
-            <a href="#" class="nav-item">
-                <img src="png/main_menu_icon.png" alt="Главное меню">
+            <a href="#" class="nav-item active"> <img src="png/main_menu_icon.png" alt="Главное меню">
                 <span>Главное меню</span>
             </a>
             <a href="#" class="nav-item">
@@ -72,5 +70,6 @@
         </nav>
     </div>
 
-    <script src="scripts/main.js"></script> </body>
+    <script src="scripts/main.js"></script>
+</body>
 </html>
