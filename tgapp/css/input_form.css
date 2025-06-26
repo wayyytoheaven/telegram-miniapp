@@ -112,7 +112,6 @@ body {
     background-color: #7A4E9E;
 }
 
-/* Modal styles */
 .hidden {
     display: none !important;
 }
@@ -189,7 +188,6 @@ body {
     background-color: #7A4E9E;
 }
 
-/* Loading overlay styles */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -227,7 +225,6 @@ body {
 }
 
 
-/* Media queries for smaller screens/heights */
 @media (max-height: 700px) {
     body {
         padding-top: 20px;

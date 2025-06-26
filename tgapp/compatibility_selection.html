@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выберите карты для совместимости</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/compatibility_selection.css">
+    <link rel="stylesheet" href="css/main.css"> </head>
+<body>
+    <div class="compatibility-container">
+        <header class="top-header">
+            <div class="tabs">
+                <button class="tab active">Анализ</button>
+                <button class="tab">Результаты</button>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h2 class="selection-title">Выберите 2 карты</h2>
+            
+            <div class="cards-list" id="cardsList">
+                </div>
+
+            <button class="add-card-button" id="addCardButton">
+                + Добавить карту
+            </button>
+
+            <button class="calculate-compatibility-button disabled" id="calculateCompatibilityButton" disabled>
+                Рассчитать совместимость
+            </button>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="input_form.html" class="nav-item">
+                <img src="png/add_card_icon.png" alt="Добавить карту">
+                <span>Добавить карту</span>
+            </a>
+            <a href="main.html" class="nav-item">
+                <img src="png/main_menu_icon.png" alt="Главное меню">
+                <span>Главное меню</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="png/expert_mode_icon.png" alt="Режим Эксперт">
+                <span>Режим Эксперт</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="png/shop_icon.png" alt="Магазин">
+                <span>Магазин</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="scripts/compatibility_selection.js"></script>
+</body>
+</html>

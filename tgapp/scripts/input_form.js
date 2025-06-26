@@ -4,8 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.getElementById('editButton');
     const confirmButton = document.getElementById('confirmButton');
     const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingSpinner = document.getElementById('loadingSpinner');
+    const loadingSpinner = document.getElementById('loadingSpinner');  
     const nameInput = document.getElementById('name');
+    const birthDateInput = document.getElementById('birthDate');
+    const birthTimeInput = document.getElementById('birthTime');
+    const locationInput = document.getElementById('birthPlace');
+    const commentInput = document.getElementById('comment');
 
     const loadingImages = [
         'load/Step 1.png',
@@ -49,12 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (confirmButton) {
         confirmButton.addEventListener('click', () => {
-            const userName = nameInput.value.trim();
-            if (userName) {
-                localStorage.setItem('userName', userName);
-            } else {
-                localStorage.removeItem('userName');
-            }
+            const newUser = {
+                id: '_' + Math.random().toString(36).substr(2, 9), 
+                name: nameInput.value.trim(),
+                birthDate: birthDateInput.value.trim(),
+                birthTime: birthTimeInput.value.trim(),
+                location: locationInput.value.trim(),
+                comment: commentInput ? commentInput.value.trim() : '' 
+            };
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('selectedUserId', newUser.id);
 
             confirmationModal.classList.add('hidden');
             loadingOverlay.classList.remove('hidden');
@@ -74,4 +85,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    function loadSelectedUserData() {
+        const selectedUserId = localStorage.getItem('selectedUserId');
+        if (selectedUserId && selectedUserId !== 'default') {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userToEdit = users.find(user => user.id === selectedUserId);
+
+            if (userToEdit) {
+                nameInput.value = userToEdit.name || '';
+                birthDateInput.value = userToEdit.birthDate || '';
+                birthTimeInput.value = userToEdit.birthTime || '';
+                locationInput.value = userToEdit.location || '';
+                if (commentInput) {
+                    commentInput.value = userToEdit.comment || '';
+                }
+            }
+        } else {
+            nameInput.value = '';
+            birthDateInput.value = '';
+            birthTimeInput.value = '';
+            locationInput.value = '';
+            if (commentInput) {
+                    commentInput.value = '';
+                }
+        }
+    }
+
+    loadSelectedUserData();
 });
