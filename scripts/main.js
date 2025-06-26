@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const userAvatar = document.getElementById('userAvatar');
     const userNameElement = document.getElementById('userName');
-    const dotsButton = document.getElementById('dotsButton'); // Новая кнопка "..."
+    const dotsButton = document.getElementById('dotsButton'); // Кнопка "..."
     const analysisCard = document.getElementById('analysisCard');
     const luckyDatesCard = document.getElementById('luckyDatesCard');
+    const compatibilityAnalysisCard = document.getElementById('compatibilityAnalysisCard'); // Получаем новую карточку
 
     // Функция для обновления отображаемого пользователя
     function updateDisplayedUser() {
@@ -17,8 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
             displayUser = users[0];
             localStorage.setItem('selectedUserId', users[0].id); // Автоматически выбираем первого
         } else if (!displayUser && users.length === 0) {
-            displayUser = { name: 'Андрей', id: 'default' }; // Дефолтный Андрей, если нет пользователей
-            localStorage.removeItem('selectedUserId'); // Убедимся, что нет выбранного ID
+            displayUser = { name: 'Андрей', id: 'default', location: 'Минск', birthDate: '01.01.2000' }; // Дефолтный Андрей, если нет пользователей
+            // Добавим дефолтного Андрея в localStorage, если его нет
+            if (!users.some(user => user.id === 'default')) {
+                users.push(displayUser);
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+            localStorage.setItem('selectedUserId', 'default');
         }
 
         if (userNameElement) {
@@ -35,19 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Обработчик для кнопки "..."
     if (dotsButton) {
         dotsButton.addEventListener('click', () => {
-            window.location.href = 'user_cards.html'; // Переход на новую страницу со списком карт
+            window.location.href = 'user_cards.html'; // Переход на страницу списка карт
+        });
+    }
+    
+    // Обработчик для кнопки "+" рядом с именем пользователя
+    const addPersonButton = document.querySelector('.action-button.add-person-button');
+    if (addPersonButton) {
+        addPersonButton.addEventListener('click', () => {
+            localStorage.removeItem('selectedUserId'); // Очищаем, чтобы форма ввода была пустой для новой карты
+            window.location.href = 'input_form.html';
         });
     }
 
     // Обработчики для основных карточек контента
     if (analysisCard) {
         analysisCard.addEventListener('click', () => {
-            window.location.href = 'analysis_page.html';
+            window.location.href = 'analysis_page.html'; // Пример страницы
         });
     }
     if (luckyDatesCard) {
         luckyDatesCard.addEventListener('click', () => {
-            window.location.href = 'favorable_dates.html';
+            window.location.href = 'favorable_dates.html'; // Пример страницы
+        });
+    }
+    if (compatibilityAnalysisCard) { // Добавляем обработчик для новой карточки
+        compatibilityAnalysisCard.addEventListener('click', () => {
+            window.location.href = 'compatibility_selection.html'; // Переход на новую страницу выбора карт для совместимости
         });
     }
 });

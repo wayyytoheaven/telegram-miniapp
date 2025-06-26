@@ -5,7 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmButton = document.getElementById('confirmButton');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const loadingSpinner = document.getElementById('loadingSpinner');
+    
+    // Получаем все поля ввода
     const nameInput = document.getElementById('name');
+    const birthDateInput = document.getElementById('birthDate');
+    const birthTimeInput = document.getElementById('birthTime');
+    const locationInput = document.getElementById('birthPlace'); // Исправлено на birthPlace, согласно input_form.html
+    const commentInput = document.getElementById('comment'); // Если у вас есть поле comment
 
     const loadingImages = [
         'load/Step 1.png',
@@ -37,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (calculateButton) {
         calculateButton.addEventListener('click', () => {
+            // Здесь можно добавить валидацию полей перед показом модалки
             confirmationModal.classList.remove('hidden');
         });
     }
@@ -49,12 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (confirmButton) {
         confirmButton.addEventListener('click', () => {
-            const userName = nameInput.value.trim();
-            if (userName) {
-                localStorage.setItem('userName', userName);
-            } else {
-                localStorage.removeItem('userName');
-            }
+            // Создаем объект с данными нового пользователя
+            const newUser = {
+                id: '_' + Math.random().toString(36).substr(2, 9), // Уникальный ID
+                name: nameInput.value.trim(),
+                birthDate: birthDateInput.value.trim(),
+                birthTime: birthTimeInput.value.trim(),
+                location: locationInput.value.trim(),
+                comment: commentInput ? commentInput.value.trim() : '' // Проверяем наличие commentInput
+            };
+
+            // Загружаем существующие карты
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            // Добавляем новую карту
+            users.push(newUser);
+            // Сохраняем обновленный список карт
+            localStorage.setItem('users', JSON.stringify(users));
+            // Устанавливаем новую карту как выбранную
+            localStorage.setItem('selectedUserId', newUser.id);
 
             confirmationModal.classList.add('hidden');
             loadingOverlay.classList.remove('hidden');
@@ -74,4 +93,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Функция для загрузки данных выбранного пользователя при редактировании
+    function loadSelectedUserData() {
+        const selectedUserId = localStorage.getItem('selectedUserId');
+        if (selectedUserId && selectedUserId !== 'default') { // 'default' - это наш дефолтный Андрей без реального ID
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userToEdit = users.find(user => user.id === selectedUserId);
+
+            if (userToEdit) {
+                nameInput.value = userToEdit.name || '';
+                birthDateInput.value = userToEdit.birthDate || '';
+                birthTimeInput.value = userToEdit.birthTime || '';
+                locationInput.value = userToEdit.location || '';
+                if (commentInput) {
+                    commentInput.value = userToEdit.comment || '';
+                }
+            }
+        } else {
+            // Если нет выбранного пользователя, очищаем поля
+            nameInput.value = '';
+            birthDateInput.value = '';
+            birthTimeInput.value = '';
+            locationInput.value = '';
+            if (commentInput) {
+                    commentInput.value = '';
+                }
+        }
+    }
+
+    // Вызываем при загрузке страницы для заполнения полей, если пользователь редактируется
+    loadSelectedUserData();
 });
