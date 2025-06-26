@@ -38,11 +38,11 @@ body {
 .user-cards-section {
     background-color: #E9E0F3;
     padding: 20px;
-    flex-grow: 1; /* Разрешаем секции занимать доступное пространство */
-    overflow-y: auto; /* Добавить прокрутку, если карт много */
+    flex-grow: 1;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Отступ между элементами */
+    gap: 15px; 
 }
 
 .user-cards-list {
@@ -77,7 +77,7 @@ body {
     width: 20px;
     height: 20px;
     appearance: none;
-    background-color: #C0A8D5; /* Неактивный цвет радиокнопки */
+    background-color: #C0A8D5;
     border-radius: 50%;
     border: 2px solid #DCCAE9;
     cursor: pointer;
@@ -86,17 +86,16 @@ body {
 }
 
 .user-card input[type="radio"]:checked {
-    background-color: #724C9D; /* Активный цвет радиокнопки */
+    background-color: #724C9D;
     border-color: #DCCAE9;
 }
 
-/* Визуальный индикатор для checked состояния */
 .user-card input[type="radio"]:checked::before {
     content: '';
     display: block;
     width: 10px;
     height: 10px;
-    background-color: white; /* Цвет "точки" внутри радиокнопки */
+    background-color: white;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -108,7 +107,7 @@ body {
     display: flex;
     align-items: center;
     flex-grow: 1;
-    margin-right: 40px; /* Отступ для радиокнопки */
+    margin-right: 40px;
 }
 
 .user-avatar {
@@ -179,7 +178,7 @@ body {
 
 .selection-footer {
     padding: 20px;
-    background-color: #E9E0F3; /* Фон, как у user-cards-section */
+    background-color: #E9E0F3;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
     text-align: center;
     flex-shrink: 0;
@@ -208,7 +207,6 @@ body {
     opacity: 0.7;
 }
 
-/* Media queries */
 @media (max-height: 700px) {
     .page-header {
         padding: 10px 15px;

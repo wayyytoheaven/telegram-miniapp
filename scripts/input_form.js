@@ -4,14 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.getElementById('editButton');
     const confirmButton = document.getElementById('confirmButton');
     const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    
-    // Получаем все поля ввода
+    const loadingSpinner = document.getElementById('loadingSpinner');  
     const nameInput = document.getElementById('name');
     const birthDateInput = document.getElementById('birthDate');
     const birthTimeInput = document.getElementById('birthTime');
-    const locationInput = document.getElementById('birthPlace'); // Исправлено на birthPlace, согласно input_form.html
-    const commentInput = document.getElementById('comment'); // Если у вас есть поле comment
+    const locationInput = document.getElementById('birthPlace');
+    const commentInput = document.getElementById('comment');
 
     const loadingImages = [
         'load/Step 1.png',
@@ -43,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (calculateButton) {
         calculateButton.addEventListener('click', () => {
-            // Здесь можно добавить валидацию полей перед показом модалки
             confirmationModal.classList.remove('hidden');
         });
     }
@@ -56,23 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (confirmButton) {
         confirmButton.addEventListener('click', () => {
-            // Создаем объект с данными нового пользователя
             const newUser = {
-                id: '_' + Math.random().toString(36).substr(2, 9), // Уникальный ID
+                id: '_' + Math.random().toString(36).substr(2, 9), 
                 name: nameInput.value.trim(),
                 birthDate: birthDateInput.value.trim(),
                 birthTime: birthTimeInput.value.trim(),
                 location: locationInput.value.trim(),
-                comment: commentInput ? commentInput.value.trim() : '' // Проверяем наличие commentInput
+                comment: commentInput ? commentInput.value.trim() : '' 
             };
 
-            // Загружаем существующие карты
             let users = JSON.parse(localStorage.getItem('users')) || [];
-            // Добавляем новую карту
             users.push(newUser);
-            // Сохраняем обновленный список карт
             localStorage.setItem('users', JSON.stringify(users));
-            // Устанавливаем новую карту как выбранную
             localStorage.setItem('selectedUserId', newUser.id);
 
             confirmationModal.classList.add('hidden');
@@ -94,10 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Функция для загрузки данных выбранного пользователя при редактировании
     function loadSelectedUserData() {
         const selectedUserId = localStorage.getItem('selectedUserId');
-        if (selectedUserId && selectedUserId !== 'default') { // 'default' - это наш дефолтный Андрей без реального ID
+        if (selectedUserId && selectedUserId !== 'default') {
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const userToEdit = users.find(user => user.id === selectedUserId);
 
@@ -111,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } else {
-            // Если нет выбранного пользователя, очищаем поля
             nameInput.value = '';
             birthDateInput.value = '';
             birthTimeInput.value = '';
@@ -122,6 +112,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Вызываем при загрузке страницы для заполнения полей, если пользователь редактируется
     loadSelectedUserData();
 });

@@ -8,11 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedUserId = localStorage.getItem('selectedUserId');
 
         if (userCardsList) {
-            userCardsList.innerHTML = ''; // Очищаем контейнер перед отрисовкой
+            userCardsList.innerHTML = '';
 
             if (users.length === 0) {
                 userCardsList.innerHTML = '<p class="no-cards-message">У вас пока нет добавленных карт. Нажмите "Добавить карту" ниже.</p>';
-                // Деактивируем кнопку "Выбрать", если нет карт
                 if (selectCardButton) {
                     selectCardButton.disabled = true;
                     selectCardButton.classList.add('disabled');
@@ -33,10 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.type = 'radio';
                 input.name = 'selectedUser';
                 input.value = user.id;
-                // Устанавливаем checked, если это текущая выбранная карта, или если это первая карта и ничего не выбрано
                 if (user.id === selectedUserId || (!selectedUserId && users.indexOf(user) === 0)) {
                     input.checked = true;
-                    // Если ничего не выбрано, но есть первая карта, сохраняем её как выбранную
                     if (!selectedUserId && users.indexOf(user) === 0) {
                          localStorage.setItem('selectedUserId', user.id);
                     }
@@ -76,23 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Рендерим карты при загрузке страницы
     renderUserCards();
 
-    // Обработчик для кнопки "Добавить карту" на этой странице
     if (addNewCardButton) {
         addNewCardButton.addEventListener('click', () => {
             window.location.href = 'input_form.html';
         });
     }
 
-    // Обработчик для кнопки "Выбрать"
     if (selectCardButton) {
         selectCardButton.addEventListener('click', () => {
             const selectedRadio = document.querySelector('input[name="selectedUser"]:checked');
             if (selectedRadio) {
-                // ID уже сохранен в localStorage через обработчик change
-                window.location.href = 'main.html'; // Возвращаемся на главную
+                window.location.href = 'main.html';
             } else {
                 alert('Пожалуйста, выберите карту для анализа.');
             }
