@@ -5,6 +5,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const analysisCard = document.getElementById('analysisCard');
     const luckyDatesCard = document.getElementById('luckyDatesCard');
 
+    const languageButton = document.getElementById('languageToggle');
+    let currentLang = 'ru';
+
+    const translations = {
+        en: {
+            languageLabel: 'RU',
+            analysisTitle: 'Life Areas Analysis',
+            luckyTitle: 'Pick Lucky Date',
+            compatibilityTitle: 'Compatibility Analysis',
+            astroTitle: 'My Personal Astrologer'
+        },
+        ru: {
+            languageLabel: 'EN',
+            analysisTitle: 'Анализ по сферам жизни',
+            luckyTitle: 'Подбор благоприятной даты',
+            compatibilityTitle: 'Анализ совместимости',
+            astroTitle: 'Мой личный астролог'
+        }
+    };
+
+    languageButton.addEventListener('click', () => {
+        currentLang = currentLang === 'ru' ? 'en' : 'ru';
+        const t = translations[currentLang];
+
+        languageButton.innerText = t.languageLabel;
+        document.getElementById('analysisCard')?.querySelector('.card-title').innerText = t.analysisTitle;
+        document.getElementById('luckyDatesCard')?.querySelector('.card-title').innerText = t.luckyTitle;
+        document.getElementById('compatibilityCard')?.querySelector('.card-title').innerText = t.compatibilityTitle;
+        document.getElementById('astroCard')?.querySelector('.card-title').innerText = t.astroTitle;
+    });
+});
+
     // Функция для обновления отображаемого пользователя
     function updateDisplayedUser() {
         const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -50,4 +82,3 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'favorable_dates.html';
         });
     }
-});
