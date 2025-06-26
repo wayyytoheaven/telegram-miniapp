@@ -1,0 +1,290 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #E9E0F3;
+    color: #5D3E7B;
+    overflow: hidden;
+}
+
+.compatibility-container {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #E9E0F3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Top Header with Tabs */
+.top-header {
+    background-color: #724C9D;
+    padding: 20px; /* Увеличил padding, чтобы соответствовало скриншоту */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.tabs {
+    display: flex;
+    background-color: #9356A0;
+    border-radius: 15px; /* Скругленные углы для контейнера табов */
+    overflow: hidden;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.tab.active {
+    background-color: #5D3E7B; /* Темно-фиолетовый для активного таба */
+    border-radius: 15px; /* Сохраняем скругления */
+}
+
+/* Main content area */
+.content-area {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем содержимое */
+}
+
+.selection-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #5D3E7B;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.cards-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступы между карточками */
+    margin-bottom: 25px;
+}
+
+.user-card {
+    background-color: #9356A0;
+    border-radius: 15px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-card.selected {
+    background-color: #5D3E7B; /* Цвет для выбранной карты */
+}
+
+.user-card .avatar-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #724C9D; /* Цвет круга аватара */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.user-card .card-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-card .card-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.user-card .card-details {
+    font-size: 14px;
+    font-weight: 400;
+    color: #DCCAE9;
+}
+
+.user-card .radio-icon {
+    width: 24px;
+    height: 24px;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.user-card.selected .radio-icon::after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background-color: white; /* Внутренний кружок */
+    border-radius: 50%;
+}
+
+.add-card-button {
+    background: none;
+    border: none;
+    color: #9356A0;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    margin-bottom: 30px; /* Отступ до кнопки "Рассчитать" */
+    transition: color 0.2s ease;
+}
+
+.add-card-button:hover {
+    color: #7A4E9E;
+}
+
+/* Calculate Compatibility Button */
+.calculate-compatibility-button {
+    background-color: #9356A0;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px; /* Отступ от нижней навигации */
+}
+
+.calculate-compatibility-button:hover:not(:disabled) {
+    background-color: #7A4E9E;
+}
+
+.calculate-compatibility-button.disabled {
+    background-color: #DCCAE9; /* Светло-фиолетовый для неактивной кнопки */
+    color: #A08AB2; /* Серый текст для неактивной кнопки */
+    cursor: not-allowed;
+}
+
+/* Adjustments for the bottom nav from main.css */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #724C9D;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0; /* Чтобы нижняя навигация не сжималась */
+}
+
+/* Adjustments for nav-item colors to match image_d4d565.png active state for 'Добавить карту' */
+.bottom-nav .nav-item.active {
+    background-color: #9356A0; /* Фиолетовый фон для активного пункта */
+    color: white; /* Белый текст для активного пункта */
+    position: relative;
+}
+
+.bottom-nav .nav-item.active img {
+    filter: brightness(0) invert(1); /* Активная иконка также белая */
+}
+
+/* If there's a black line on active item as per image_4df5f4.png, you can re-add this */
+/*
+.bottom-nav .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px; 
+    height: 3px;
+    background-color: black;
+    border-radius: 1.5px;
+}
+*/
+
+/* Media queries for smaller screens/heights */
+@media (max-height: 700px) {
+    .top-header {
+        padding: 15px 15px;
+    }
+    .tab {
+        padding: 8px 15px;
+        font-size: 15px;
+    }
+    .selection-title {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+    .cards-list {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .user-card {
+        padding: 12px 15px;
+    }
+    .user-card .avatar-circle {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        margin-right: 12px;
+    }
+    .user-card .card-name {
+        font-size: 15px;
+    }
+    .user-card .card-details {
+        font-size: 13px;
+    }
+    .user-card .radio-icon {
+        width: 22px;
+        height: 22px;
+    }
+    .user-card.selected .radio-icon::after {
+        width: 12px;
+        height: 12px;
+    }
+    .add-card-button {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+    .calculate-compatibility-button {
+        padding: 12px 25px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+}

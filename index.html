@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVEKA ASTRO GPT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="splash-screen" id="splashScreen">
+        <div class="logo">
+            <img src="png/Welcome_logo.png" alt="Логотип">
+        </div>
+        <div class="welcome-text">Добро пожаловать в</div>
+        <div class="app-name">VIVEKA ASTRO GPT!</div>
+    </div>
+
+    <div class="slider-container hidden" id="onboardingSlider">
+        <div class="slides-wrapper" id="slidesWrapper">
+            <div class="slide active" id="slide-0">
+                <div class="top-header">Откройте для себя мир джайотхиш-астрологии с <br> VIVEKA ASTRO GPT</div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <img src="png/Logo.png" alt="Введение">
+                    </div>
+                    <div class="card-description">Первая специализированная нейросеть, созданная для того, чтобы помочь вам разобраться в сложности жизни и найти ответы на важные вопросы.</div>
+                </div>
+            </div>
+
+            <div class="slide hidden" id="slide-1">
+                <div class="top-header">С помощью нашего приложения вы сможете:</div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <img src="png/Sun.png" alt="Понимание себя">
+                    </div>
+                    <div class="card-description">
+                        Получить глубокое понимание себя<br><br>Узнайте о своих сильных и слабых сторонах, а также о том, как астрология может помочь вам раскрыть ваш потенциал.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide hidden" id="slide-2">
+                <div class="top-header">С помощью нашего приложения вы сможете:</div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <img src="png/Feather.png" alt="Благоприятные даты">
+                    </div>
+                    <div class="card-description">
+                        Подобрать благоприятные даты<br><br>Понимание астрологических циклов поможет вам выбрать оптимальные моменты для начала новых проектов, важных встреч или личных изменений.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide hidden" id="slide-3">
+                <div class="top-header">С помощью нашего приложения вы сможете:</div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <img src="png/Moon.png" alt="Проверить совместимость">
+                    </div>
+                    <div class="card-description">
+                        Проверить совместимость<br><br>Исследуйте свои отношения с друзьями, партнерами и коллегами. Узнайте, как ваш астрологический карты взаимодействуют друг с другом и что это значит для ваших отношений.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide hidden" id="slide-4">
+                <div class="top-header">С помощью нашего приложения вы сможете:</div>
+                <div class="content-card">
+                    <div class="card-icon">
+                        <img src="png/Star.png" alt="Задать вопросы эксперту">
+                    </div>
+                    <div class="card-description">
+                        Задавать вопросы эксперту<br><br>Воспользуйтесь возможностью задать свои вопросы и получить профессиональные рекомендации от нашей нейросети, которая использует передовые технологии для анализа астрологических данных.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pagination" id="paginationDots">
+            </div>
+
+        <button class="next-button" id="nextButton">Далее</button>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
