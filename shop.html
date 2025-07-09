@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/main.css"> </head>
+<body>
+    <div class="shop-container">
+        <header class="shop-header">
+            <h1 class="header-title">Магазин</h1>
+        </header>
+
+        <main class="shop-content-area">
+            <section class="subscription-card">
+                <div class="subscription-header">
+                    <img src="png/calendar_icon.png" alt="Календарь" class="subscription-icon">
+                    <h2 class="subscription-title">Ежемесячная подписка</h2>
+                </div>
+                <p class="subscription-description">Дает доступ к разделам:</p>
+                <div class="access-features">
+                    <div class="feature-item">
+                        <img src="png/new_cards_icon.png" alt="Новые карты">
+                        <span>Новые карты</span>
+                    </div>
+                    <div class="feature-item">
+                        <img src="png/my_astrologer_icon.png" alt="Мой личный астролог">
+                        <span>Мой личный астролог</span>
+                    </div>
+                    <div class="feature-item">
+                        <img src="png/compatibility_icon.png" alt="Анализ совместимости">
+                        <span>Анализ совместимости</span>
+                        <span class="bonus-stars">+ 100 <img src="png/Star_small.png" alt="Звезда"></span>
+                    </div>
+                </div>
+                <button class="subscribe-button">Подписаться за €15/месяц</button>
+            </section>
+
+            <section class="stars-purchase-section">
+                <h2 class="stars-section-title">Купить звезды</h2>
+                <div class="stars-grid">
+                    <div class="stars-card">
+                        <img src="png/Illustration1.png" alt="Иллюстрация звезд" class="stars-illustration">
+                        <span class="stars-amount">30 звезд</span>
+                        <button class="buy-stars-button">€1</button>
+                    </div>
+                    <div class="stars-card">
+                        <img src="png/Illustration2.png" alt="Иллюстрация звезд" class="stars-illustration">
+                        <span class="stars-amount">30 звезд</span>
+                        <button class="buy-stars-button">€9</button>
+                    </div>
+                     <div class="stars-card">
+                        <img src="png/Illustration3.png" alt="Иллюстрация звезд" class="stars-illustration">
+                        <span class="stars-amount">30 звезд</span>
+                        <button class="buy-stars-button">€40</button>
+                    </div>
+                    <div class="stars-card">
+                        <img src="png/Illustration4.png" alt="Иллюстрация звезд" class="stars-illustration">
+                        <span class="stars-amount">30 звезд</span>
+                        <button class="buy-stars-button">€80</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="input_form.html" class="nav-item">
+                <img src="png/add_card_icon.png" alt="Добавить карту">
+                <span>Добавить карту</span>
+            </a>
+            <a href="main.html" class="nav-item">
+                <img src="png/main_menu_icon.png" alt="Главное меню">
+                <span>Главное меню</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="png/expert_mode_icon.png" alt="Режим Эксперт">
+                <span>Режим Эксперт</span>
+            </a>
+            <a href="shop.html" class="nav-item active"> <img src="png/shop_icon.png" alt="Магазин">
+                <span>Магазин</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="scripts/shop.js"></script>
+</body>
+</html>
