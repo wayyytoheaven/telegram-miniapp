@@ -50,17 +50,17 @@
                     </div>
                     <div class="stars-card">
                         <img src="png/Illustration2.png" alt="Иллюстрация звезд" class="stars-illustration">
-                        <span class="stars-amount">30 звезд</span>
+                        <span class="stars-amount">300 звезд</span>
                         <button class="buy-stars-button">€9</button>
                     </div>
                      <div class="stars-card">
                         <img src="png/Illustration3.png" alt="Иллюстрация звезд" class="stars-illustration">
-                        <span class="stars-amount">30 звезд</span>
+                        <span class="stars-amount">2000 звезд</span>
                         <button class="buy-stars-button">€40</button>
                     </div>
                     <div class="stars-card">
                         <img src="png/Illustration4.png" alt="Иллюстрация звезд" class="stars-illustration">
-                        <span class="stars-amount">30 звезд</span>
+                        <span class="stars-amount">5000 звезд</span>
                         <button class="buy-stars-button">€80</button>
                     </div>
                 </div>
@@ -80,10 +80,29 @@
                 <img src="png/expert_mode_icon.png" alt="Режим Эксперт">
                 <span>Режим Эксперт</span>
             </a>
-            <a href="shop.html" class="nav-item active"> <img src="png/shop_icon.png" alt="Магазин">
+            <a href="shop.html" class="nav-item active">
+                <img src="png/shop_icon.png" alt="Магазин">
                 <span>Магазин</span>
             </a>
         </nav>
+    </div>
+
+    <div id="confirmationModal" class="modal-overlay hidden">
+        <div class="modal-content confirmation-modal">
+            <p class="modal-message" id="confirmMessage">Вы уверены, что хотите купить [X] звезд за [Y]€?</p>
+            <div class="modal-buttons">
+                <button class="modal-button button-yes" id="confirmYes">Да</button>
+                <button class="modal-button button-no" id="confirmNo">Нет</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal-overlay hidden">
+        <div class="modal-content success-modal">
+            <img src="png/Feather.png" alt="Успешно" class="success-icon">
+            <p class="modal-message">Покупка успешно совершена!</p>
+            <button class="modal-button button-ok" id="successOk">Ок</button>
+        </div>
     </div>
 
     <script src="scripts/shop.js"></script>
